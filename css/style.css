@@ -3,16 +3,14 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url(../fonts/open-sans.woff2) format("woff2"),
-    url(../fonts/open-sans.woff) format("woff");
+  src: url(../fonts/open-sans.woff2) format("woff2"), url(../fonts/open-sans.woff) format("woff");
 }
 @font-face {
   font-family: Roboto;
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url(../fonts/roboto.woff2) format("woff2"),
-    url(../fonts/roboto.woff) format("woff");
+  src: url(../fonts/roboto.woff2) format("woff2"), url(../fonts/roboto.woff) format("woff");
 }
 @font-face {
   font-family: "Playfair Display";
@@ -214,7 +212,8 @@ ul {
   background-color: #fceae8;
   z-index: -1;
 }
-.main-screen .swiper-pagination {
+.main-screen .swiper-pagination,
+.swiper-pagination .last__slider-pagination {
   top: 216px;
   left: auto;
   right: 2.3%;
@@ -563,7 +562,7 @@ ul {
   text-decoration-line: underline;
   color: #000;
 }
-.chance-items {
+.last-ch-flex {
   display: flex;
   gap: 50px 31px;
   flex-wrap: wrap;
@@ -619,8 +618,9 @@ ul {
 }
 .box-to-buy {
   position: relative;
+  width: 288px;
 }
-.start-chance-item::before {
+/* .start-chance-item::before {
   content: url(#) "";
   position: absolute;
   width: 100%;
@@ -630,8 +630,8 @@ ul {
   left: 0;
   z-index: 1;
   cursor: pointer;
-}
-.start-chance-item::after {
+} */
+/* .start-chance-item::after {
   content: "КУПИТЬ";
   text-align: center;
   font-weight: 400;
@@ -684,7 +684,7 @@ ul {
   width: 100%;
   background: #303032;
   z-index: 2;
-}
+} */
 .reviews {
   padding-bottom: 100px;
   overflow: hidden;
@@ -732,6 +732,17 @@ ul {
   display: flex;
   gap: 1000px;
 }
+
+.last-ch-flex {
+}
+.chance-items .swiper-wrapper {
+  /* display: flex; */
+  /* flex-direction: row; */
+  /* flex-wrap: nowrap; */
+  /* gap: 100px; */
+}
+
+
 .footer__nav {
   display: flex;
   flex-direction: column;
@@ -870,10 +881,10 @@ ul {
   }
 }
 @media (max-width: 1023px) {
-  .chance-items {
+  /* .chance-items {
     gap: 50px 17px;
     justify-content: center;
-  }
+  } */
   .news {
     flex-flow: row;
     max-height: none;
@@ -977,7 +988,7 @@ ul {
   .no-scroll {
     overflow: hidden;
   }
-  
+
   .burger_icon:focus,
   .close_cross_burger:focus,
   .burger_icon:hover,
@@ -1065,7 +1076,7 @@ ul {
   .media .site-nav__item:nth-child(3) {
     text-align: right;
   }
-  
+
   .site-nav__item a {
     font-size: 16px;
     line-height: 25px;
@@ -1154,14 +1165,16 @@ ul {
   .main-screen::before {
     height: 327px;
   }
-  .main-screen .swiper-scrollbar {
+  .main-screen .swiper-scrollbar,
+  .swiper-scrollbar .last__slider-scrollbar {
     bottom: 49px;
     left: 0;
     width: calc(100% - 64px);
     height: 2px;
     display: block;
   }
-  .main-screen .swiper-pagination {
+  .main-screen .swiper-pagination,
+  .swiper-pagination .last__slider-pagination {
     top: auto;
     bottom: 37px;
     right: 0;
@@ -1171,7 +1184,8 @@ ul {
     font-size: 15px;
     line-height: 26px;
   }
-  .main-screen .swiper-slide {
+  .main-screen .swiper-slide,
+  .box-to-buy .swiper-slide {
     background: #f9fdff 64%;
   }
   .product--slider {
@@ -1283,7 +1297,6 @@ ul {
     letter-spacing: -0.2px;
   }
   .footer__nav {
-    
     padding-top: 3px;
     padding-left: 0px;
   }
@@ -1299,7 +1312,7 @@ ul {
     font-size: 20px;
   }
   .last__chance_header {
-  padding-top: 2px;
+    padding-top: 2px;
   }
   .news__item:first-child {
     padding-left: 0;
@@ -1308,4 +1321,13 @@ ul {
     margin-top: 0;
     margin-bottom: 10px;
   }
+}
+
+.last__slider-scrollbar {
+  bottom: 0px;
+}
+
+.last_chance-swiper {
+  width: 300px;
+  height: 456px;
 }
