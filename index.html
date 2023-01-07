@@ -6,9 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Callium - продажа дизайнерской мебели">
   <title>Style furnitures "Callium"</title>
-  <link rel="preload" href="fonts/open-sans.woff2" as="font" crossorigin="anonymous">
-  <link rel="preload" href="fonts/playfair-display.woff2" as="font" crossorigin="anonymous">
-  <link rel="preload" href="fonts/playfair-display-bold.woff2" as="font" crossorigin="anonymous">
+  <!-- <link rel="preload" href="fonts/open-sans.woff2" as="font" crossorigin="anonymous"> -->
+  <!-- <link rel="preload" href="fonts/playfair-display.woff2" as="font" crossorigin="anonymous"> -->
+  <!-- <link rel="preload" href="fonts/playfair-display-bold.woff2" as="font" crossorigin="anonymous"> -->
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/swiper.css">
   <link rel="stylesheet" href="css/style.css">
@@ -159,7 +159,7 @@
       </a>
     </section>
 
-    <section class="reviews swiper container">
+    <section class="reviews swiper-container swiper-review container">
       <div class="reviews-wrap swiper-wrapper">
         <div class="review-item swiper-slide">
           <img class="avatar-img" src="img/avatar@2x.jpg" alt="reviewer photo">
@@ -203,6 +203,7 @@
     </section>
 
     <section class="last_chance container">
+
       <p class="last__chance_header">ПОСЛЕДНИЙ ШАНС</p>
       <hr class="news__header__line">
       <nav class="site-nav">
@@ -218,58 +219,64 @@
           </li>
         </ul>
       </nav>
-      <div class="chance-items">
-        <div class="box-to-buy">
-          <a class="chance-item start-chance-item" href="#">
-            <p class="chance-item__name">Стул «Карамель»</p>
-            <div class="prices">
-              <p class="new-item-price">$195</p>
-              <p class="old-item-price">$245</p>
-            </div>
-            <img class="chance-img" src="img/chair-caramel-desktop@2x.png" width="204" alt="img chance">
-          </a>
+      <div class="swiper-container last_chance-swiper">
+        <div class="swiper-wrapper chance-items last-ch-flex">
+          <div class="swiper-slide box-to-buy">
+            <a class="chance-item start-chance-item" href="#">
+              <p class="chance-item__name">Стул «Карамель»</p>
+              <div class="prices">
+                <p class="new-item-price">$195</p>
+                <p class="old-item-price">$245</p>
+              </div>
+              <img class="chance-img" src="img/chair-caramel-desktop@2x.png" width="204" alt="img chance">
+            </a>
+          </div>
+          <div class="swiper-slide box-to-buy">
+            <a class="chance-item" href="#">
+              <p class="chance-item__name">Стул «Облако»</p>
+              <div class="prices">
+                <p class="new-item-price">$200</p>
+                <p class="old-item-price">$250</p>
+              </div>
+              <img class="chance-img" src="img/chair-cloud-desktop@2x.jpg" width="192" alt="img chance">
+            </a>
+          </div>
+          <div class="swiper-slide box-to-buy">
+            <a class="chance-item" href="#">
+              <p class="chance-item__name">Стул «Сова»</p>
+              <div class="prices">
+                <p class="new-item-price">$240</p>
+                <p class="old-item-price">$260</p>
+              </div>
+              <img class="chance-img" src="img/chair-owl-desktop@2x.png" width="165" alt="img chance">
+            </a>
+          </div>
+          <div class="swiper-slide box-to-buy">
+            <a class="chance-item" href="#">
+              <p class="chance-item__name">Стул «Мая»</p>
+              <div class="prices">
+                <p class="new-item-price">$280</p>
+                <p class="old-item-price">$330</p>
+              </div>
+              <img class="chance-img" src="img/chair-maya-desktop@2x.jpg" alt="img chance" width="185">
+            </a>
+          </div>
+          <div class="swiper-slide box-to-buy">
+            <a class="chance-item" href="#">
+              <p class="chance-item__name">Стул «Месси»</p>
+              <div class="prices">
+                <p class="new-item-price">$280</p>
+                <p class="old-item-price">$305</p>
+              </div>
+              <img class="chance-img" src="img/messi_02x2.png" alt="img chance" width="149">
+            </a>
+          </div>
         </div>
-        <div class="box-to-buy">
-          <a class="chance-item" href="#">
-            <p class="chance-item__name">Стул «Облако»</p>
-            <div class="prices">
-              <p class="new-item-price">$200</p>
-              <p class="old-item-price">$250</p>
-            </div>
-            <img class="chance-img" src="img/chair-cloud-desktop@2x.jpg" width="192" alt="img chance">
-          </a>
-        </div>
-        <div class="box-to-buy">
-          <a class="chance-item" href="#">
-            <p class="chance-item__name">Стул «Сова»</p>
-            <div class="prices">
-              <p class="new-item-price">$240</p>
-              <p class="old-item-price">$260</p>
-            </div>
-            <img class="chance-img" src="img/chair-owl-desktop@2x.png" width="165" alt="img chance">
-          </a>
-        </div>
-        <div class="box-to-buy">
-          <a class="chance-item" href="#">
-            <p class="chance-item__name">Стул «Мая»</p>
-            <div class="prices">
-              <p class="new-item-price">$280</p>
-              <p class="old-item-price">$330</p>
-            </div>
-            <img class="chance-img" src="img/chair-maya-desktop@2x.jpg" alt="img chance" width="185">
-          </a>
-        </div>
-        <div class="box-to-buy">
-          <a class="chance-item" href="#">
-            <p class="chance-item__name">Стул «Месси»</p>
-            <div class="prices">
-              <p class="new-item-price">$280</p>
-              <p class="old-item-price">$305</p>
-            </div>
-            <img class="chance-img" src="img/messi_02x2.png" alt="img chance" width="149">
-          </a>
-        </div>
+        <div class="swiper-scrollbar last__slider-scrollbar"></div>
+        <div class="swiper-pagination last__slider-pagination"></div>
       </div>
+
+
     </section>
 
     <footer class="footer container">
@@ -302,7 +309,6 @@
 
     <script src="js/vendor/swiper.js"></script>
     <script src="js/lib/slider-main.js"></script>
-    <script src="js/lib/slider-review.js"></script>
     <script src="js/lib/uncheck.js"></script>
   </main>
 </body>
