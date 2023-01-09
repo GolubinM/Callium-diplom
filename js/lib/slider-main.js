@@ -1,25 +1,12 @@
-// "use strict";
-
 function mainSlider() {
   let mySwiper = "";
   let myLastSwiper = "";
   let swiper = "";
   let breakpoint = window.matchMedia("(max-width: 767px)");
-  console.log(breakpoint.matches);
 
   let breakpointChecker = function () {
-    
     if (breakpoint.matches) {
-      if (mySwiper) {
-        mySwiper.destroy(true, true);
-      };
-      if (myLastSwiper) {
-        mySwiper.destroy(true, true);
-      };
-      if (swiper) {
-        swiper.destroy(true, true);
-      };
-
+      destroySwiper(mySwiper);
       mySwiper = new Swiper(".main-screen__slider", {
         spaceBetween: 10,
         pagination: {
@@ -32,8 +19,8 @@ function mainSlider() {
         },
       });
 
-      document.querySelector(".chance-items").classList.remove("last-ch-flex");
-
+      const chanceItms = document.querySelector(".chance-items").classList;
+      destroySwiper(myLastSwiper);
       myLastSwiper = new Swiper(".last_chance-swiper", {
         spaceBetween: 50,
         slidesPerGroup: 1,
@@ -49,19 +36,8 @@ function mainSlider() {
           el: ".last__slider-scrollbar",
         },
       });
-
-      return;
     } else {
-      if (mySwiper) {
-        mySwiper.destroy(true, true);
-      }
-      if (Boolean(myLastSwiper)) {
-        myLastSwiper.destroy(true, true);
-      }
-      if (swiper) {
-        swiper.destroy(true, true);
-      };
-
+      destroySwiper(mySwiper);
       mySwiper = new Swiper(".main-screen__slider", {
         pagination: {
           el: ".main-screen__slider-pagination",
@@ -72,7 +48,7 @@ function mainSlider() {
           },
         },
       });
-
+      destroySwiper(swiper);
       swiper = new Swiper(".swiper-review", {
         loop: true,
         slidesPerGroup: 1,
@@ -94,18 +70,16 @@ function mainSlider() {
 
       document.querySelector(".chance-items").classList.add("last-ch-flex");
     }
-
-    // swiper.update();
-    // mySwiper.update();
-    // myLastSwiper = "";
-    // if (myLastSwiper) {
-    //   myLastSwiper.update();
-    // }
   };
   breakpointChecker();
   breakpoint.addEventListener("change", () => {
     breakpointChecker();
   });
+}
+function destroySwiper(swiper) {
+  if (swiper) {
+    swiper.destroy(true, true);
+  }
 }
 
 mainSlider();
