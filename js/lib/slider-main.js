@@ -27,7 +27,7 @@ function mainSlider() {
         slidesPerGroup: 1,
         slidesPerView: "auto",
         centeredSlides: true,
-
+        
         pagination: {
           el: ".last__slider-pagination",
           type: "fraction",
@@ -79,8 +79,6 @@ function mainSlider() {
 
 function destroySwiper(swiperTo) {
   if (swiperTo) {
-    console.log(swiperTo);
-    // swiper.pagination.destroy();
     swiperTo.destroy(true, true);
   }
 }
