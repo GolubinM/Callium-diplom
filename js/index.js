@@ -27,7 +27,7 @@ function mainSlider() {
         slidesPerGroup: 1,
         slidesPerView: "auto",
         centeredSlides: true,
-        
+
         pagination: {
           el: ".last__slider-pagination",
           type: "fraction",
@@ -84,3 +84,11 @@ function destroySwiper(swiperTo) {
 }
 
 mainSlider();
+
+//Закрыает бургер-меню
+let checkBurgerMenu = document.getElementById("check");
+document.querySelectorAll(".menu__item").forEach((element) => {
+  element.addEventListener("click", () => {
+    checkBurgerMenu.checked = false;
+  });
+});
