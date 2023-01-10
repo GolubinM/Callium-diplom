@@ -830,6 +830,15 @@ ul {
     flex-wrap: wrap;
     gap: 26px 64px;
   }
+/* hide lost-chance swiper pagination symbol */
+.last_chance-swiper:not(.swiper-initialized) .swiper-pagination.last__slider-pagination {
+  display: none;
+}
+  
+
+
+
+
 }
 @media (max-width: 1279px) {
   .page-header__wrapper {
