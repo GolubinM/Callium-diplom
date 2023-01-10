@@ -1,11 +1,12 @@
 function mainSlider() {
   let mySwiper = "";
   let myLastSwiper = "";
-  let swiper = "";
+  let swiperReview = "";
   let breakpoint = window.matchMedia("(max-width: 767px)");
 
   let breakpointChecker = function () {
     if (breakpoint.matches) {
+      destroySwiper(swiperReview);
       destroySwiper(mySwiper);
       mySwiper = new Swiper(".main-screen__slider", {
         spaceBetween: 10,
@@ -37,6 +38,7 @@ function mainSlider() {
         },
       });
     } else {
+      destroySwiper(myLastSwiper);
       destroySwiper(mySwiper);
       mySwiper = new Swiper(".main-screen__slider", {
         pagination: {
@@ -48,37 +50,38 @@ function mainSlider() {
           },
         },
       });
-      destroySwiper(swiper);
-      swiper = new Swiper(".swiper-review", {
+      destroySwiper(swiperReview);
+      swiperReview = new Swiper(".swiper-review", {
         loop: true,
         slidesPerGroup: 1,
         slidesPerView: "auto",
         spaceBetween: 200,
         pagination: {
-          el: ".swiper-pagination",
+          el: ".review-swiper-pagination",
           clickable: true,
         },
 
-        navigation: {
-          nextEl: ".swiper-button-next",
-          prevEl: ".swiper-button-prev",
-        },
         scrollbar: {
-          el: ".swiper-scrollbar",
+          el: ".review-swiper-scrollbar",
         },
       });
 
       document.querySelector(".chance-items").classList.add("last-ch-flex");
     }
   };
+
   breakpointChecker();
+
   breakpoint.addEventListener("change", () => {
     breakpointChecker();
   });
 }
-function destroySwiper(swiper) {
-  if (swiper) {
-    swiper.destroy(true, true);
+
+function destroySwiper(swiperTo) {
+  if (swiperTo) {
+    console.log(swiperTo);
+    // swiper.pagination.destroy();
+    swiperTo.destroy(true, true);
   }
 }
 

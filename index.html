@@ -10,7 +10,7 @@
   <!-- <link rel="preload" href="fonts/playfair-display.woff2" as="font" crossorigin="anonymous"> -->
   <!-- <link rel="preload" href="fonts/playfair-display-bold.woff2" as="font" crossorigin="anonymous"> -->
   <link rel="stylesheet" href="css/normalize.css">
-  <link rel="stylesheet" href="css/swiper.css">
+  <link rel="stylesheet" href="css/swiper-bundle.min.css">
   <link rel="stylesheet" href="css/style.css">
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 </head>
@@ -68,7 +68,7 @@
   <main class="page-main">
     <h1>Дизайнерская мебель "Callium"</h1>
     <section class="main-screen container">
-      <div class="swiper-container main-screen__slider">
+      <div class="swiper main-screen__slider">
         <div class="swiper-wrapper">
           <div class="swiper-slide">
             <div class="product product--slider">
@@ -159,7 +159,7 @@
       </a>
     </section>
 
-    <section class="reviews swiper-container swiper-review container">
+    <section class="reviews swiper swiper-review container">
       <div class="reviews-wrap swiper-wrapper">
         <div class="review-item swiper-slide">
           <img class="avatar-img" src="img/avatar@2x.jpg" alt="reviewer photo">
@@ -199,7 +199,7 @@
             в 2016 году. Продержался 3 года. В принципе, не плохо...»</p>
         </div>
       </div>
-      <div class="reviews swiper-pagination"></div>
+      <div class="swiper-pagination review-swiper-pagination"></div>
     </section>
 
     <section class="last_chance container">
@@ -219,7 +219,7 @@
           </li>
         </ul>
       </nav>
-      <div class="swiper-container last_chance-swiper">
+      <div class="swiper last_chance-swiper">
         <div class="swiper-wrapper chance-items last-ch-flex">
           <div class="swiper-slide box-to-buy">
             <a class="chance-item start-chance-item" href="#">
@@ -307,7 +307,7 @@
       </div>
     </footer>
 
-    <script src="js/vendor/swiper.js"></script>
+    <script src="js/vendor/swiper-bundle.min.js"> </script>
     <script src="js/lib/slider-main.js"></script>
     <script src="js/lib/uncheck.js"></script>
   </main>

@@ -212,8 +212,7 @@ ul {
   background-color: #fceae8;
   z-index: -1;
 }
-.main-screen .swiper-pagination,
-.swiper-pagination .last__slider-pagination {
+.main-screen .swiper-pagination {
   top: 216px;
   left: auto;
   right: 2.3%;
@@ -654,7 +653,7 @@ ul {
   background: #303032;
   cursor: pointer;
 }
-.swiper-container.last_chance-swiper {
+.swiper.last_chance-swiper {
   overflow: visible;
 }
 .chance-items:hover .start-chance-item:not(:hover)::before,
@@ -727,18 +726,13 @@ ul {
   background-color: #fff;
   border: 1px solid #000;
   box-sizing: border-box;
+  padding-bottom: 0;
 }
 .reviews .swiper-pagination-bullet-active {
   background-color: #b3b3b3;
   border: 1px solid #b3b3b3;
 }
-.reviews .swiper-pagination-bullets {
-  padding-bottom: 0;
-}
-.reviews-wrap .swiper-wrapper {
-  display: flex;
-  gap: 1000px;
-}
+
 
 .footer__nav {
   display: flex;
@@ -878,11 +872,7 @@ ul {
   }
 }
 @media (max-width: 1023px) {
-  .chance-items {
-    gap: 50px 17px;
-    justify-content: center;
-  }
-  .news {
+   .news {
     flex-flow: row;
     max-height: none;
     flex-wrap: wrap;
@@ -915,9 +905,7 @@ ul {
   .main-screen {
     margin-bottom: 80px;
   }
-  .reviews {
-    display: none;
-  }
+  
   .site-nav__list .media {
     width: 275px;
     margin-top: 37px;
@@ -934,7 +922,10 @@ ul {
   }
 }
 @media (max-width: 767px) {
-  .news {
+  .reviews {
+    display: none;
+  }
+    .news {
     margin-bottom: 73px;
   }
   .last_chance {
@@ -1350,7 +1341,7 @@ ul {
     width: 320px;
     height: 456px;
   }
-  .swiper-container.last_chance-swiper {
+  .swiper.last_chance-swiper {
     overflow: hidden;
   }
 }
