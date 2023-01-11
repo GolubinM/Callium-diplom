@@ -82,13 +82,36 @@ function destroySwiper(swiperTo) {
     swiperTo.destroy(true, true);
   }
 }
-
-mainSlider();
-
-//Закрывает бургер-меню
+//Закрыает бургер-меню
 let checkBurgerMenu = document.getElementById("check");
 document.querySelectorAll(".menu__item").forEach((element) => {
   element.addEventListener("click", () => {
     checkBurgerMenu.checked = false;
   });
 });
+
+// загружаем данные JSON и запускаем слайдер
+$("document").ready(function () {
+  loadLastChance();
+  mainSlider();
+});
+
+function loadLastChance() {
+  $.getJSON("js/json/lastchance.json", function (data) {
+    let html = "";
+    for (var key in data) {
+      html += `<div class="swiper-slide box-to-buy">`;
+      html += `<a class="chance-item" href="#">`;
+      html += `<p class="chance-item__name">${data[key]["name"]}</p>`;
+      html += `<div class="prices">`;
+      html += `<p class="new-item-price">${data[key]["cost"]}</p>`;
+      html += `<p class="old-item-price">${data[key]["oldCost"]}</p>`;
+      html += `</div>`;
+      html += `<img class="chance-img" src=${data[key]["image"]} width="204" alt="img chance">`;
+      html += "</a>";
+      html += "</div>";
+    }
+    $(".chance-items").html(html);
+  });
+}
+
