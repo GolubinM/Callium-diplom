@@ -85,7 +85,7 @@ function destroySwiper(swiperTo) {
 
 mainSlider();
 
-//Закрыает бургер-меню
+//Закрывает бургер-меню
 let checkBurgerMenu = document.getElementById("check");
 document.querySelectorAll(".menu__item").forEach((element) => {
   element.addEventListener("click", () => {
