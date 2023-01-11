@@ -623,7 +623,7 @@ ul {
 }
 
 /* --------------------------------- */
-.start-chance-item::before {
+.chance-items > div:first-child:before {
   content: url(#) "";
   position: absolute;
   width: 100%;
@@ -634,7 +634,7 @@ ul {
   z-index: 1;
   cursor: pointer;
 }
-.start-chance-item::after {
+.chance-items > div:first-child:after {
   content: "КУПИТЬ";
   text-align: center;
   font-weight: 400;
@@ -657,8 +657,8 @@ ul {
 .swiper.last_chance-swiper {
   overflow: visible;
 }
-.chance-items:hover .start-chance-item:not(:hover)::before,
-.chance-items:hover .start-chance-item:not(:hover)::after {
+.chance-items:hover > div:first-child:not(:hover)::before,
+.chance-items:hover > div:first-child:not(:hover)::after {
   opacity: 0;
 }
 .chance-item:hover::before {
@@ -1299,14 +1299,14 @@ ul {
     gap: 7px;
   }
 
-  .start-chance-item::before {
+  .chance-items > div:first-child::before {
     display: none;
   }
-  .start-chance-item::after {
+  .chance-items > div:first-child::after {
     display: none;
   }
-  .chance-items:hover .start-chance-item:not(:hover)::before,
-  .chance-items:hover .start-chance-item:not(:hover)::after {
+  .chance-items:hover > div:first-child:not(:hover)::before,
+  .chance-items:hover > div:first-child:not(:hover)::after {
     display: none;
   }
   .chance-item:hover::before {
