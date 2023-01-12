@@ -141,7 +141,6 @@ $(document).on("mouseout", "a.chance-item", function () {
   isShowBuyButtonSet = false;
   // если в течении 1500мс карточка не выбрана кнопка КУПИТЬ возвращается на первую карточку
   setTimeout(() => {
-    console.log(`is ${isShowBuyButtonSet}`);
     if (!isShowBuyButtonSet) $("a.chance-item:first").addClass("showBuyButton");
   }, 1500);
 });
