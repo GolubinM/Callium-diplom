@@ -1347,6 +1347,10 @@ ul {
   .footer__nav {
     height: 208px;
   }
+  .chance-item.showBuyButton::after,
+  .chance-item.showBuyButton::before {
+    display: none;
+  }
 }
 
 @media (max-width: 424px) {
