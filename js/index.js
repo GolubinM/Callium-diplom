@@ -95,9 +95,51 @@ document.querySelectorAll(".menu__item").forEach((element) => {
 //------------------------------------------------------------------------
 // загружаем данные JSON и запускаем слайдер
 $("document").ready(function () {
+  loadDesignFurnitures();
+  loadReviews();
   loadLastChance();
   mainSlider();
 });
+// загружаем данные JSON для Design furniture--------------------------------
+function loadDesignFurnitures() {
+  $.getJSON("js/json/designFurnitures.json", function (data) {
+    let html = "";
+    for (var key in data) {
+      html += `<div class="swiper-slide">`;
+      html += `<div class="product product--slider">`;
+      html += `<div class="product__info">`;
+      html += `<h2>Дизайнерская мебель</h2>`;
+      html += `<h3>${data[key]["name"]}</h3>`;
+      html += `<p><span>${data[key]["oldPrice"]}</span>${data[key]["price"]}</p>`;
+      html += `<button class="product__button" type="button">Купить</button>`;
+      html += `</div>`;
+      html += `<div class="product__image">`;
+      html += `<img src=${data[key]["image"]} srcset="${data[key]["image2"]} 2x" width="532"
+          height="751" alt="image ${data[key]}">`;
+      html += `</div>`;
+      html += `</div>`;
+      html += `</div>`;
+    }
+    $(".swiper.main-screen__slider .swiper-wrapper").html(html);
+  });
+}
+// загружаем данные JSON для reviews--------------------------------
+
+function loadReviews() {
+  $.getJSON("js/json/reviews.json", function (data) {
+    let html = "";
+    for (var key in data) {
+      html += `<div class="review-item swiper-slide">`;
+      html += `<img class="avatar-img" src="${data[key]["image"]}" alt="reviewer photo"></img>`;
+      html += `<p class="reviewer-name">${data[key]["name"]}</p>`;
+      html += `<p class="reviewer-status">${data[key]["status"]}</p>`;
+      html += `<p class=${data[key]["review"]}></p>`;
+      html += "</div>";
+    }
+    $(".reviews .swiper-wrapper").html(html);
+  });
+}
+// загружаем данные JSON для Last Cance furniture--------------------------------
 
 function loadLastChance() {
   $.getJSON("js/json/lastchance.json", function (data) {
@@ -141,7 +183,6 @@ $(document).on("mouseout", "a.chance-item", function () {
   isShowBuyButtonSet = false;
   // если в течении 1500мс карточка не выбрана кнопка КУПИТЬ возвращается на первую карточку
   setTimeout(() => {
-    console.log(`is ${isShowBuyButtonSet}`);
     if (!isShowBuyButtonSet) $("a.chance-item:first").addClass("showBuyButton");
   }, 1500);
 });
