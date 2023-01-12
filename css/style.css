@@ -757,7 +757,6 @@ ul {
 .footer__addres {
   display: flex;
   gap: 50px;
-  /* padding-top: 30px; */
 }
 .footer_menu {
   display: flex;
@@ -833,6 +832,9 @@ ul {
     /* margin: 39px 0 0; */
     flex-wrap: wrap;
     gap: 26px 64px;
+  }
+  .last-ch-flex {
+    justify-content: space-evenly;
   }
 }
 @media (max-width: 1279px) {
@@ -1299,24 +1301,6 @@ ul {
     overflow: hidden;
     gap: 7px;
   }
-
-  /* .chance-items > div:first-child::before {
-    display: none;
-  }
-  .chance-items > div:first-child::after {
-    display: none;
-  }
-  .chance-items:hover > div:first-child:not(:hover)::before,
-  .chance-items:hover > div:first-child:not(:hover)::after {
-    display: none;
-  }
-  .chance-item:hover::before {
-    display: none;
-  }
-  .chance-item:hover::after {
-    display: none;
-  } */
-  /* -for last chance swiper--------------------------- */
   .swiper-slide.box-to-buy {
     width: 288px;
   }
