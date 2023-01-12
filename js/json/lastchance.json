@@ -39,12 +39,96 @@
     "name": "Стул «Свон»",
     "cost": "$190",
     "oldCost": "$210",
-    "image": "js/json/img/110007.jpg"
+    "image": "js/json/img/110007.webp"
   },
   "110008": {
     "name": "Стул «Марафе»",
     "cost": "$75",
     "oldCost": "$110",
-    "image": "js/json/img/110008.jpg"
+    "image": "js/json/img/110008.webp"
+  },
+  "110009": {
+    "name": "Стул «Старт»",
+    "cost": "$45",
+    "oldCost": "$85",
+    "image": "js/json/img/110009.webp"
+  },
+  "110010": {
+    "name": "Стул «Черрли»",
+    "cost": "$105",
+    "oldCost": "$118",
+    "image": "js/json/img/110010.webp"
+  },
+  "110011": {
+    "name": "Стул «Ласмо»",
+    "cost": "$95",
+    "oldCost": "$140",
+    "image": "js/json/img/110011.webp"
+  },
+  "110012": {
+    "name": "Стул «Крит»",
+    "cost": "$55",
+    "oldCost": "$110",
+    "image": "js/json/img/110012.webp"
+  },
+  "110013": {
+    "name": "Стул «Дилли»",
+    "cost": "$90",
+    "oldCost": "$140",
+    "image": "js/json/img/110013.webp"
+  },
+  "110014": {
+    "name": "Стул «Триама»",
+    "cost": "$65",
+    "oldCost": "$80",
+    "image": "js/json/img/110014.webp"
+  },
+  "110015": {
+    "name": "Стул «Долне»",
+    "cost": "$85",
+    "oldCost": "$130",
+    "image": "js/json/img/110015.webp"
+  },
+  "110016": {
+    "name": "Стул «Дефо»",
+    "cost": "$65",
+    "oldCost": "$102",
+    "image": "js/json/img/110016.webp"
+  },
+  "110017": {
+    "name": "Стул «Лурье»",
+    "cost": "$88",
+    "oldCost": "$125",
+    "image": "js/json/img/110017.webp"
+  },
+  "110018": {
+    "name": "Стул «Катрин»",
+    "cost": "$82",
+    "oldCost": "$90",
+    "image": "js/json/img/110018.webp"
+  },
+  "110019": {
+    "name": "Стул «Утро»",
+    "cost": "$65",
+    "oldCost": "$105",
+    "image": "js/json/img/110019.webp"
+  },
+  "110020": {
+    "name": "Стул «Тали»",
+    "cost": "$85",
+    "oldCost": "$150",
+    "image": "js/json/img/110020.webp"
+  },
+  "110021": {
+    "name": "Стул «Лоре»",
+    "cost": "$65",
+    "oldCost": "$101",
+    "image": "js/json/img/110021.webp"
+  },
+  "110022": {
+    "name": "Стул «Нео»",
+    "cost": "$85",
+    "oldCost": "$90",
+    "image": "js/json/img/110022.webp"
   }
 }
