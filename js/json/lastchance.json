@@ -1,0 +1,134 @@
+{
+  "110001": {
+    "name": "Стул «Карамель»",
+    "cost": "$195",
+    "oldCost": "$245",
+    "image": "js/json/img/chair-caramel-desktop@2x.png"
+  },
+  "110002": {
+    "name": "Стул «Облако»",
+    "cost": "$200",
+    "oldCost": "$250",
+    "image": "js/json/img/chair-cloud-desktop@2x.jpg"
+  },
+  "110003": {
+    "name": "Стул «Сова»",
+    "cost": "$240",
+    "oldCost": "$260",
+    "image": "js/json/img/chair-owl-desktop@2x.png"
+  },
+  "110004": {
+    "name": "Стул «Мая»",
+    "cost": "$280",
+    "oldCost": "$330",
+    "image": "js/json/img/chair-maya-desktop@2x.jpg"
+  },
+  "110005": {
+    "name": "Стул «Месси»",
+    "cost": "$280",
+    "oldCost": "$305",
+    "image": "js/json/img/chair-messi-desktop@2x.png"
+  },
+  "110006": {
+    "name": "Стул «Лувр»",
+    "cost": "$140",
+    "oldCost": "$185",
+    "image": "js/json/img/110006.jpg"
+  },
+  "110007": {
+    "name": "Стул «Свон»",
+    "cost": "$190",
+    "oldCost": "$210",
+    "image": "js/json/img/110007.webp"
+  },
+  "110008": {
+    "name": "Стул «Марафе»",
+    "cost": "$75",
+    "oldCost": "$110",
+    "image": "js/json/img/110008.webp"
+  },
+  "110009": {
+    "name": "Стул «Старт»",
+    "cost": "$45",
+    "oldCost": "$85",
+    "image": "js/json/img/110009.webp"
+  },
+  "110010": {
+    "name": "Стул «Черрли»",
+    "cost": "$105",
+    "oldCost": "$118",
+    "image": "js/json/img/110010.webp"
+  },
+  "110011": {
+    "name": "Стул «Ласмо»",
+    "cost": "$95",
+    "oldCost": "$140",
+    "image": "js/json/img/110011.webp"
+  },
+  "110012": {
+    "name": "Стул «Крит»",
+    "cost": "$55",
+    "oldCost": "$110",
+    "image": "js/json/img/110012.webp"
+  },
+  "110013": {
+    "name": "Стул «Дилли»",
+    "cost": "$90",
+    "oldCost": "$140",
+    "image": "js/json/img/110013.webp"
+  },
+  "110014": {
+    "name": "Стул «Триама»",
+    "cost": "$65",
+    "oldCost": "$80",
+    "image": "js/json/img/110014.webp"
+  },
+  "110015": {
+    "name": "Стул «Долне»",
+    "cost": "$85",
+    "oldCost": "$130",
+    "image": "js/json/img/110015.webp"
+  },
+  "110016": {
+    "name": "Стул «Дефо»",
+    "cost": "$65",
+    "oldCost": "$102",
+    "image": "js/json/img/110016.webp"
+  },
+  "110017": {
+    "name": "Стул «Лурье»",
+    "cost": "$88",
+    "oldCost": "$125",
+    "image": "js/json/img/110017.webp"
+  },
+  "110018": {
+    "name": "Стул «Катрин»",
+    "cost": "$82",
+    "oldCost": "$90",
+    "image": "js/json/img/110018.webp"
+  },
+  "110019": {
+    "name": "Стул «Утро»",
+    "cost": "$65",
+    "oldCost": "$105",
+    "image": "js/json/img/110019.webp"
+  },
+  "110020": {
+    "name": "Стул «Тали»",
+    "cost": "$85",
+    "oldCost": "$150",
+    "image": "js/json/img/110020.webp"
+  },
+  "110021": {
+    "name": "Стул «Лоре»",
+    "cost": "$65",
+    "oldCost": "$101",
+    "image": "js/json/img/110021.webp"
+  },
+  "110022": {
+    "name": "Стул «Нео»",
+    "cost": "$85",
+    "oldCost": "$90",
+    "image": "js/json/img/110022.webp"
+  }
+}
