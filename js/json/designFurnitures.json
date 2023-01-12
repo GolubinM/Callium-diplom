@@ -1,0 +1,30 @@
+{
+  "101001": {
+    "name": "Кресло \"Антиква\"",
+    "oldPrice": "$380",
+    "price": "$240",
+    "image": "js/json/imgdesign/main-chair-desktop.jpg",
+    "image2x": "js/json/imgdesign/main-chair-desktop@2_1x.jpg 2x"
+  },
+  "101002": {
+    "name": "Стул офисный<br>«Белый шоколад»",
+    "oldPrice": "$245",
+    "price": "$195",
+    "image": "js/json/imgdesign/caramel_main_rose_desktop.png",
+    "image2x": "js/json/imgdesign/caramel_main_rose_x2.png 2x"
+  },
+  "101003": {
+    "name": "Круглый скандинавский<br>деревянный столик",
+    "oldPrice": "$75",
+    "price": "$51",
+    "image": "js/json/imgdesign/modern_table_rose_desktop.png",
+    "image2x": "js/json/imgdesign/modern_table_rose_x2.png 2x"
+  },
+  "101004": {
+    "name": "Стул барный",
+    "oldPrice": "$70",
+    "price": "$34",
+    "image": "js/json/imgdesign/high_chair_rose_desktop.png",
+    "image2x": "js/json/imgdesign/high_chair_rose_x2.png 2x"
+  }
+}
