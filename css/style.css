@@ -623,7 +623,7 @@ ul {
 }
 
 /* --------------------------------- */
-.chance-items > div:first-child:before {
+.chance-item.showBuyButton:before {
   content: url(#) "";
   position: absolute;
   width: 100%;
@@ -634,7 +634,7 @@ ul {
   z-index: 1;
   cursor: pointer;
 }
-.chance-items > div:first-child:after {
+.chance-item.showBuyButton:after {
   content: "КУПИТЬ";
   text-align: center;
   font-weight: 400;
@@ -657,11 +657,12 @@ ul {
 .swiper.last_chance-swiper {
   overflow: visible;
 }
-.chance-items:hover > div:first-child:not(:hover)::before,
+/* .chance-items:hover > div:first-child:not(:hover)::before,
 .chance-items:hover > div:first-child:not(:hover)::after {
   opacity: 0;
-}
-.chance-item:hover::before {
+} */
+/* .chance-item:hover::before { */
+.chance-item.showBuyButton::before {
   content: "";
   position: absolute;
   width: 100%;
@@ -671,7 +672,7 @@ ul {
   left: 0;
   z-index: 2;
 }
-.chance-item:hover::after {
+.chance-item.showBuyButton::after {
   content: "КУПИТЬ";
   text-align: center;
   font-weight: 400;
@@ -1299,7 +1300,7 @@ ul {
     gap: 7px;
   }
 
-  .chance-items > div:first-child::before {
+  /* .chance-items > div:first-child::before {
     display: none;
   }
   .chance-items > div:first-child::after {
@@ -1314,7 +1315,7 @@ ul {
   }
   .chance-item:hover::after {
     display: none;
-  }
+  } */
   /* -for last chance swiper--------------------------- */
   .swiper-slide.box-to-buy {
     width: 288px;

@@ -1,3 +1,4 @@
+//------Обработка слайдеров-----------------------------------------------------
 function mainSlider() {
   let mySwiper = "";
   let myLastSwiper = "";
@@ -69,19 +70,21 @@ function mainSlider() {
       document.querySelector(".chance-items").classList.add("last-ch-flex");
     }
   };
-
+  // Начальная инициализация слайдеров
   breakpointChecker();
 
+  // Прослушка изменения ширины экрана через переменную breakpoint
   breakpoint.addEventListener("change", () => {
     breakpointChecker();
   });
 }
-
+// Удаление слайдеров
 function destroySwiper(swiperTo) {
   if (swiperTo) {
     swiperTo.destroy(true, true);
   }
 }
+//------------------------------------------------------------------------
 //Закрыает бургер-меню
 let checkBurgerMenu = document.getElementById("check");
 document.querySelectorAll(".menu__item").forEach((element) => {
@@ -89,7 +92,7 @@ document.querySelectorAll(".menu__item").forEach((element) => {
     checkBurgerMenu.checked = false;
   });
 });
-
+//------------------------------------------------------------------------
 // загружаем данные JSON и запускаем слайдер
 $("document").ready(function () {
   loadLastChance();
@@ -114,4 +117,32 @@ function loadLastChance() {
     $(".chance-items").html(html);
   });
 }
+//------------------------------------------------------------------------
+// Обработка hover для last-chance card
+// по умолчанию кнопка КУПИТЬ активна для первой карточки last-chance
+// если в течении 1500мс карточка не выбрана кнопка КУПИТЬ возвращается на первую карточку
 
+let isShowBuyButtonSet = false;
+
+// Добавляем к вновь созданному динамическому элементу класс
+$("body").bind("DOMNodeInserted", function () {
+  $(this).find("a.chance-item:first").addClass("showBuyButton");
+  isShowBuyButtonSet = true;
+});
+
+// По наведению мыши удаляем класс с первой карточки,  добавляем к карточке на которую навели мышь
+$(document).on("mouseover", "a.chance-item", function () {
+  $("a.chance-item:first").removeClass("showBuyButton");
+  $(this).addClass("showBuyButton");
+  isShowBuyButtonSet = true;
+});
+$(document).on("mouseout", "a.chance-item", function () {
+  $(this).removeClass("showBuyButton");
+  isShowBuyButtonSet = false;
+  // если в течении 1500мс карточка не выбрана кнопка КУПИТЬ возвращается на первую карточку
+  setTimeout(() => {
+    console.log(`is ${isShowBuyButtonSet}`);
+    if (!isShowBuyButtonSet) $("a.chance-item:first").addClass("showBuyButton");
+  }, 1500);
+});
+//------------------------------------------------------------------------
