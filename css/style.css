@@ -564,7 +564,7 @@ ul {
 }
 .last-ch-flex {
   display: flex;
-  gap: 50px 31px;
+  gap: 30px 31px;
   flex-wrap: wrap;
   position: relative;
 }
@@ -834,8 +834,8 @@ ul {
     gap: 26px 64px;
   }
   .last-ch-flex {
-    justify-content: space-evenly;
-  }
+    gap: 30px 30px;
+    justify-content: center;
 }
 @media (max-width: 1279px) {
   .page-header__wrapper {
