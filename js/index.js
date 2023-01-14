@@ -20,19 +20,16 @@ function mainSlider() {
           el: ".main-screen__slider-scrollbar",
         },
       });
-      
       destroySwiper(myLastSwiper);
       myLastSwiper = new Swiper(".last_chance-swiper", {
         spaceBetween: 50,
         slidesPerGroup: 1,
         slidesPerView: "auto",
         centeredSlides: true,
-
         pagination: {
           el: ".last__slider-pagination",
           type: "fraction",
         },
-
         scrollbar: {
           el: ".last__slider-scrollbar",
         },
@@ -52,7 +49,7 @@ function mainSlider() {
       });
       destroySwiper(swiperReview);
       swiperReview = new Swiper(".swiper-review", {
-        loop: true,
+        loop: false,
         slidesPerGroup: 1,
         slidesPerView: "auto",
         spaceBetween: 200,
@@ -60,12 +57,10 @@ function mainSlider() {
           el: ".review-swiper-pagination",
           clickable: true,
         },
-
         scrollbar: {
           el: ".review-swiper-scrollbar",
         },
       });
-
       document.querySelector(".chance-items").classList.add("last-ch-flex");
     }
   };
@@ -94,8 +89,8 @@ document.querySelectorAll(".menu__item").forEach((element) => {
 //------------------------------------------------------------------------
 // загружаем данные JSON и запускаем слайдер
 // $("document").ready(function () {
-  loadReviews();
-  loadLastChance();
+loadReviews();
+loadLastChance();
 // });
 
 function loadReviews() {
@@ -106,15 +101,13 @@ function loadReviews() {
       html += `<img class="avatar-img" src="${data[key]["image"]}" width="80" height="80" alt="reviewer photo">`;
       html += `<p class="reviewer-name">${data[key]["name"]}</p>`;
       html += `<p class="reviewer-status">${data[key]["status"]}</p>`;
-      html += `<p class=${data[key]["review"]}></p>`;
-      console.log(data[key]["review"]);
+      html += `<p class=="review">${data[key]["review"]}></p>`;
       html += `</div>`;
     }
     $(".reviews .swiper-wrapper").html(html);
     // .always - запуск слайдера после загрузки всех данных из reviews.json---
   }).always(function () {
     mainSlider();
-    console.log("Успех");
   });
 }
 
