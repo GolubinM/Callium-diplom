@@ -20,8 +20,6 @@ function mainSlider() {
           el: ".main-screen__slider-scrollbar",
         },
       });
-
-      const chanceItms = document.querySelector(".chance-items").classList;
       destroySwiper(myLastSwiper);
       myLastSwiper = new Swiper(".last_chance-swiper", {
         spaceBetween: 50,
@@ -39,6 +37,7 @@ function mainSlider() {
         },
       });
     } else {
+      destroySwiper(swiperReview);
       destroySwiper(myLastSwiper);
       destroySwiper(mySwiper);
       mySwiper = new Swiper(".main-screen__slider", {
@@ -51,9 +50,8 @@ function mainSlider() {
           },
         },
       });
-      destroySwiper(swiperReview);
       swiperReview = new Swiper(".swiper-review", {
-        loop: true,
+        loop: false,
         slidesPerGroup: 1,
         slidesPerView: "auto",
         spaceBetween: 200,
@@ -82,6 +80,7 @@ function mainSlider() {
 function destroySwiper(swiperTo) {
   if (swiperTo) {
     swiperTo.destroy(true, true);
+    console.log(`Удален свайпер`);
   }
 }
 //------------------------------------------------------------------------
