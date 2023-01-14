@@ -20,6 +20,7 @@ function mainSlider() {
           el: ".main-screen__slider-scrollbar",
         },
       });
+      
       destroySwiper(myLastSwiper);
       myLastSwiper = new Swiper(".last_chance-swiper", {
         spaceBetween: 50,
@@ -37,7 +38,6 @@ function mainSlider() {
         },
       });
     } else {
-      destroySwiper(swiperReview);
       destroySwiper(myLastSwiper);
       destroySwiper(mySwiper);
       mySwiper = new Swiper(".main-screen__slider", {
@@ -50,8 +50,9 @@ function mainSlider() {
           },
         },
       });
+      destroySwiper(swiperReview);
       swiperReview = new Swiper(".swiper-review", {
-        loop: false,
+        loop: true,
         slidesPerGroup: 1,
         slidesPerView: "auto",
         spaceBetween: 200,
@@ -80,7 +81,6 @@ function mainSlider() {
 function destroySwiper(swiperTo) {
   if (swiperTo) {
     swiperTo.destroy(true, true);
-    console.log(`Удален свайпер`);
   }
 }
 //------------------------------------------------------------------------
@@ -93,10 +93,30 @@ document.querySelectorAll(".menu__item").forEach((element) => {
 });
 //------------------------------------------------------------------------
 // загружаем данные JSON и запускаем слайдер
-$("document").ready(function () {
+// $("document").ready(function () {
+  loadReviews();
   loadLastChance();
-  mainSlider();
-});
+// });
+
+function loadReviews() {
+  $.getJSON("js/json/reviews.json", function (data) {
+    let html = "";
+    for (let key in data) {
+      html += `<div class="swiper-slide review-item">`;
+      html += `<img class="avatar-img" src="${data[key]["image"]}" width="80" height="80" alt="reviewer photo">`;
+      html += `<p class="reviewer-name">${data[key]["name"]}</p>`;
+      html += `<p class="reviewer-status">${data[key]["status"]}</p>`;
+      html += `<p class=${data[key]["review"]}></p>`;
+      console.log(data[key]["review"]);
+      html += `</div>`;
+    }
+    $(".reviews .swiper-wrapper").html(html);
+    // .always - запуск слайдера после загрузки всех данных из reviews.json---
+  }).always(function () {
+    mainSlider();
+    console.log("Успех");
+  });
+}
 
 function loadLastChance() {
   $.getJSON("js/json/lastchance.json", function (data) {
@@ -109,7 +129,7 @@ function loadLastChance() {
       html += `<p class="new-item-price">${data[key]["cost"]}</p>`;
       html += `<p class="old-item-price">${data[key]["oldCost"]}</p>`;
       html += `</div>`;
-      html += `<img class="chance-img" src=${data[key]["image"]} width="204" alt="img chance">`;
+      html += `<img class="chance-img" src=${data[key]["image"]} width="204" height="300" alt="img chance">`;
       html += "</a>";
       html += "</div>";
     }
