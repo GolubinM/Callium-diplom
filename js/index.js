@@ -87,11 +87,15 @@ document.querySelectorAll(".menu__item").forEach((element) => {
   });
 });
 //------------------------------------------------------------------------
-// загружаем данные JSON и запускаем слайдер
-// $("document").ready(function () {
-loadReviews();
-loadLastChance();
-// });
+// загружаем данные JSON после готовности объектной модели страницы (DOM)
+$(document).ready(function () {
+  loadReviews();
+  loadLastChance();
+});
+// запускаем слайдер после загргузки данных JSON
+$(window).on("load", function () {
+  mainSlider();
+});
 
 function loadReviews() {
   $.getJSON("js/json/reviews.json", function (data) {
@@ -105,9 +109,6 @@ function loadReviews() {
       html += `</div>`;
     }
     $(".reviews .swiper-wrapper").html(html);
-    // .always - запуск слайдера после загрузки всех данных из reviews.json---
-  }).always(function () {
-    mainSlider();
   });
 }
 
