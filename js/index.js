@@ -1,5 +1,5 @@
 import { mainSlider } from "./modules/swipers.js";
-import { templateReviews, templateLastChance} from "./modules/templates.js"
+import { templateReviews, templateLastChance } from "./modules/templates.js";
 //------------------------------------------------------------------------
 //Закрыает бургер-меню
 let checkBurgerMenu = document.getElementById("check");
