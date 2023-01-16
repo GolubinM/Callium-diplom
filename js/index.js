@@ -11,10 +11,13 @@ document.querySelectorAll(".menu__item").forEach((element) => {
 //------------------------------------------------------------------------
 // загружаем данные JSON
 loadItems("js/json/reviews.json", ".reviews .swiper-wrapper", templateReviews);
-loadItems("js/json/lastchance.json", ".chance-items", templateLastChance);
+// массив со всеми карточками LastChance в переменную LastChanceArray для возможности дальнейшего отбора
+let LastChanceArray = loadItems("js/json/lastchance.json", ".chance-items", templateLastChance);
 // Вставка HTML согласно шаблону 'template' с данными из json файла параметр 'sourceJSON' после HTML
 //  элемента с селектором 'insSelector'
+// Данные в переменную
 function loadItems(sourceJSON, insSelector, template) {
+  let dataArray = [];
   fetch(sourceJSON)
     .then((response) => {
       return response.json();
@@ -22,10 +25,40 @@ function loadItems(sourceJSON, insSelector, template) {
     .then((data) => {
       let html = "";
       for (var key in data) {
-        html += template(key, data);
+        dataArray.push(data[key]);
       }
-      document.querySelector(insSelector).insertAdjacentHTML("afterbegin", html);
+      htmlCardsBulder(data, insSelector, template);
     });
+  return dataArray;
+}
+
+// процедура формирования и замены html-----------------------------------
+function htmlCardsBulder(data, insSelector, template) {
+  let html = "";
+  for (var key in data) {
+    html += template(key, data);
+  }
+  document.querySelector(insSelector).innerHTML = html;
+}
+
+//-обработка отбора товаров по категориям, секция Last Chance-------------
+document.querySelectorAll(".last_chance_a").forEach((element) => {
+  element.addEventListener("click", (e) => {
+    let category = e.target.dataset.filter; // получение категории отбора
+    let selectedItems = filter(category, LastChanceArray); //вызов процедуры фильтрации
+    htmlCardsBulder(selectedItems, ".chance-items", templateLastChance); //вызов процедуры формирования html
+  });
+});
+//------------------------------------------------------------------------
+// фильтрация карточек по категории товара (HTML атрибут data-filter=".."")
+function filter(category, items) {
+  const selectedItems =
+    category === "all"
+      ? items
+      : items.filter((item) => {
+          return item.category === category;
+        });
+  return selectedItems; //возвращает массив отобранных элементов(карточек товара)
 }
 //------------------------------------------------------------------------
 // Обработка наведения мыши для last-chance cards
