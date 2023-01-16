@@ -87,74 +87,77 @@ document.querySelectorAll(".menu__item").forEach((element) => {
   });
 });
 //------------------------------------------------------------------------
-// загружаем данные JSON после готовности объектной модели страницы (DOM)
-$(document).ready(function () {
-  loadReviews();
-  loadLastChance();
-});
-// запускаем слайдер после загргузки данных JSON
-$(window).on("load", function () {
-  mainSlider();
-});
+// Шаблон для reviews блоков
+const templateReviews = (key, data) => {
+  return `<div class="swiper-slide review-item">
+      <img class="avatar-img" src="${data[key]["image"]}" width="80" height="80" alt="reviewer photo">
+      <p class="reviewer-name">${data[key]["name"]}</p>
+      <p class="reviewer-status">${data[key]["status"]}</p>
+      <p class=="review">${data[key]["review"]}</p>
+      </div>`;
+};
 
-function loadReviews() {
-  $.getJSON("js/json/reviews.json", function (data) {
-    let html = "";
-    for (let key in data) {
-      html += `<div class="swiper-slide review-item">`;
-      html += `<img class="avatar-img" src="${data[key]["image"]}" width="80" height="80" alt="reviewer photo">`;
-      html += `<p class="reviewer-name">${data[key]["name"]}</p>`;
-      html += `<p class="reviewer-status">${data[key]["status"]}</p>`;
-      html += `<p class=="review">${data[key]["review"]}></p>`;
-      html += `</div>`;
-    }
-    $(".reviews .swiper-wrapper").html(html);
-  });
-}
+// Шаблон для LastChance блоков
+const templateLastChance = (key, data) => {
+  return `<div class="swiper-slide box-to-buy">
+      <a class="chance-item" href="#">
+      <p class="chance-item__name">${data[key]["name"]}</p>
+      <div class="prices">
+      <p class="new-item-price">${data[key]["cost"]}</p>
+      <p class="old-item-price">${data[key]["oldCost"]}</p>
+      </div>
+      <img class="chance-img" src=${data[key]["image"]} width="204" height="300" alt="img chance">
+      </a>
+      </div>`;
+};
 
-function loadLastChance() {
-  $.getJSON("js/json/lastchance.json", function (data) {
-    let html = "";
-    for (var key in data) {
-      html += `<div class="swiper-slide box-to-buy">`;
-      html += `<a class="chance-item" href="#">`;
-      html += `<p class="chance-item__name">${data[key]["name"]}</p>`;
-      html += `<div class="prices">`;
-      html += `<p class="new-item-price">${data[key]["cost"]}</p>`;
-      html += `<p class="old-item-price">${data[key]["oldCost"]}</p>`;
-      html += `</div>`;
-      html += `<img class="chance-img" src=${data[key]["image"]} width="204" height="300" alt="img chance">`;
-      html += "</a>";
-      html += "</div>";
-    }
-    $(".chance-items").html(html);
-  });
+//------------------------------------------------------------------------
+// загружаем данные JSON
+loadItems("js/json/reviews.json", ".reviews .swiper-wrapper", templateReviews);
+loadItems("js/json/lastchance.json", ".chance-items", templateLastChance);
+// Вставка HTML согласно шаблону 'template' с данными из json файла параметр 'sourceJSON' после HTML
+//  элемента с селектором 'insSelector'
+function loadItems(sourceJSON, insSelector, template) {
+  fetch(sourceJSON)
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      let html = "";
+      for (var key in data) {
+        html += template(key, data);
+      }
+      document.querySelector(insSelector).insertAdjacentHTML("afterbegin", html);
+    });
 }
 //------------------------------------------------------------------------
-// Обработка hover для last-chance card
+// Обработка наведения мыши для last-chance cards
 // по умолчанию кнопка КУПИТЬ активна для первой карточки last-chance
-// если в течении 1500мс карточка не выбрана кнопка КУПИТЬ возвращается на первую карточку
-
-let isShowBuyButtonSet = false;
-
-// Добавляем к вновь созданному динамическому элементу класс
-$("body").bind("DOMNodeInserted", function () {
-  $(this).find("a.chance-item:first").addClass("showBuyButton");
-  isShowBuyButtonSet = true;
+const observedLastChance = document.querySelector(".chance-items");
+const observerLastChance = new MutationObserver(function (mutations) {
+  mainSlider(); // запускаем слайдеры после загргузки данных JSON
+  // Добавляем к вновь созданному первому элементу класс
+  mutations[0].addedNodes[0].firstElementChild.classList.add("showBuyButton");
 });
+observerLastChance.observe(observedLastChance, { childList: true });
 
-// По наведению мыши удаляем класс с первой карточки,  добавляем к карточке на которую навели мышь
-$(document).on("mouseover", "a.chance-item", function () {
-  $("a.chance-item:first").removeClass("showBuyButton");
-  $(this).addClass("showBuyButton");
-  isShowBuyButtonSet = true;
-});
-$(document).on("mouseout", "a.chance-item", function () {
-  $(this).removeClass("showBuyButton");
-  isShowBuyButtonSet = false;
-  // если в течении 1500мс карточка не выбрана кнопка КУПИТЬ возвращается на первую карточку
-  setTimeout(() => {
-    if (!isShowBuyButtonSet) $("a.chance-item:first").addClass("showBuyButton");
-  }, 1500);
-});
+let currentCard = null;
+observedLastChance.onmouseover = function (event) {
+  if (currentCard) return; // Исключает обработку при движении мыши внутри текущего элемента
+  let targetCard = event.target.closest(".chance-item"); //Выбирает карточку под указателем мыши с классом `chance-item`
+  if (!targetCard) return; // Исключает обработку если мышь не над карточкой (targetCard не выбрана)
+  currentCard = targetCard; // Определяет выбранную карточку для обработки
+  document.querySelector(".showBuyButton").classList.remove("showBuyButton"); // удаляем класс с предыдущей карточки
+  currentCard.classList.add("showBuyButton"); // определяем класс для текущей карточки
+};
+observedLastChance.onmouseout = function (event) {
+  if (!currentCard) return; // Исключает обработку при движении мыши внутри текущего элемента
+  let relatedTarget = event.relatedTarget; // Исключаем обработку дочерних элементов карточки
+  while (relatedTarget) {
+    // Исключаем обработку дочерних элементов карточки
+    if (relatedTarget == currentCard) return; // Исключаем обработку дочерних элементов карточки
+    relatedTarget = relatedTarget.parentNode; // Исключаем обработку дочерних элементов карточки
+  }
+  currentCard = null; //Обрабатываем событие ухода мыши с карточки
+};
 //------------------------------------------------------------------------
