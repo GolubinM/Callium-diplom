@@ -1,83 +1,5 @@
-//------Обработка слайдеров-----------------------------------------------------
-function mainSlider() {
-  let mySwiper = "";
-  let myLastSwiper = "";
-  let swiperReview = "";
-  let breakpoint = window.matchMedia("(max-width: 767px)");
-
-  let breakpointChecker = function () {
-    if (breakpoint.matches) {
-      destroySwiper(swiperReview);
-      destroySwiper(mySwiper);
-      mySwiper = new Swiper(".main-screen__slider", {
-        spaceBetween: 10,
-        pagination: {
-          el: ".main-screen__slider-pagination",
-          type: "fraction",
-        },
-
-        scrollbar: {
-          el: ".main-screen__slider-scrollbar",
-        },
-      });
-      destroySwiper(myLastSwiper);
-      myLastSwiper = new Swiper(".last_chance-swiper", {
-        spaceBetween: 50,
-        slidesPerGroup: 1,
-        slidesPerView: "auto",
-        centeredSlides: true,
-        pagination: {
-          el: ".last__slider-pagination",
-          type: "fraction",
-        },
-        scrollbar: {
-          el: ".last__slider-scrollbar",
-        },
-      });
-    } else {
-      destroySwiper(myLastSwiper);
-      destroySwiper(mySwiper);
-      mySwiper = new Swiper(".main-screen__slider", {
-        pagination: {
-          el: ".main-screen__slider-pagination",
-          type: "bullets",
-          clickable: true,
-          renderBullet: function (index, className) {
-            return '<span class="' + className + '">' + "0" + (index + 1) + "</span>";
-          },
-        },
-      });
-      destroySwiper(swiperReview);
-      swiperReview = new Swiper(".swiper-review", {
-        loop: false,
-        slidesPerGroup: 1,
-        slidesPerView: "auto",
-        spaceBetween: 200,
-        pagination: {
-          el: ".review-swiper-pagination",
-          clickable: true,
-        },
-        scrollbar: {
-          el: ".review-swiper-scrollbar",
-        },
-      });
-      document.querySelector(".chance-items").classList.add("last-ch-flex");
-    }
-  };
-  // Начальная инициализация слайдеров
-  breakpointChecker();
-
-  // Прослушка изменения ширины экрана через переменную breakpoint
-  breakpoint.addEventListener("change", () => {
-    breakpointChecker();
-  });
-}
-// Удаление слайдеров
-function destroySwiper(swiperTo) {
-  if (swiperTo) {
-    swiperTo.destroy(true, true);
-  }
-}
+import { mainSlider } from "./modules/swipers.js";
+import { templateReviews, templateLastChance} from "./modules/templates.js"
 //------------------------------------------------------------------------
 //Закрыает бургер-меню
 let checkBurgerMenu = document.getElementById("check");
@@ -86,31 +8,6 @@ document.querySelectorAll(".menu__item").forEach((element) => {
     checkBurgerMenu.checked = false;
   });
 });
-//------------------------------------------------------------------------
-// Шаблон для reviews блоков
-const templateReviews = (key, data) => {
-  return `<div class="swiper-slide review-item">
-      <img class="avatar-img" src="${data[key]["image"]}" width="80" height="80" alt="reviewer photo">
-      <p class="reviewer-name">${data[key]["name"]}</p>
-      <p class="reviewer-status">${data[key]["status"]}</p>
-      <p class=="review">${data[key]["review"]}</p>
-      </div>`;
-};
-
-// Шаблон для LastChance блоков
-const templateLastChance = (key, data) => {
-  return `<div class="swiper-slide box-to-buy">
-      <a class="chance-item" href="#">
-      <p class="chance-item__name">${data[key]["name"]}</p>
-      <div class="prices">
-      <p class="new-item-price">${data[key]["cost"]}</p>
-      <p class="old-item-price">${data[key]["oldCost"]}</p>
-      </div>
-      <img class="chance-img" src=${data[key]["image"]} width="204" height="300" alt="img chance">
-      </a>
-      </div>`;
-};
-
 //------------------------------------------------------------------------
 // загружаем данные JSON
 loadItems("js/json/reviews.json", ".reviews .swiper-wrapper", templateReviews);
