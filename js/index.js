@@ -23,8 +23,7 @@ function loadItems(sourceJSON, insSelector, template) {
       return response.json();
     })
     .then((data) => {
-      let html = "";
-      for (var key in data) {
+      for (let key in data) {
         dataArray.push(data[key]);
       }
       htmlCardsBulder(data, insSelector, template);
@@ -35,7 +34,7 @@ function loadItems(sourceJSON, insSelector, template) {
 // процедура формирования и замены html-----------------------------------
 function htmlCardsBulder(data, insSelector, template) {
   let html = "";
-  for (var key in data) {
+  for (let key in data) {
     html += template(key, data);
   }
   document.querySelector(insSelector).innerHTML = html;
@@ -90,4 +89,27 @@ observedLastChance.onmouseout = function (event) {
   }
   currentCard = null; //Обрабатываем событие ухода мыши с карточки
 };
+
+//----Скрытие/отображение разделов доставка, гарантия, оплата, контакты-----------------------------------------
+document.querySelector(`.footer_menu`).addEventListener("click", (e) => {
+  e.preventDefault;
+  let elementSelector = false;
+  let targetId = e.target.id;
+  if (targetId === "deliveryBtn") {
+    elementSelector = `.product-delivery`;
+  } else if (targetId === "warrantyBtn") {
+    elementSelector = `.product-warranty`;
+  } else if (targetId === "payBtn") {
+    // elementSelector = `.product-warranty`;
+  } else if (targetId === "contactsBtn") {
+    // elementSelector = `.product-warranty`;
+  }
+  elementSelector ? toggleElement(elementSelector) : false;
+});
+
+function toggleElement(elementSelector) {
+  let toggledElement = document.querySelector(elementSelector);
+  toggledElement.classList.toggle("hide");
+  toggledElement.scrollIntoView({ block: "start", behavior: "smooth" });
+}
 //------------------------------------------------------------------------

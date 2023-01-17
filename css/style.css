@@ -623,45 +623,9 @@ ul {
 }
 
 /* --------------------------------- */
-.chance-item.showBuyButton:before {
-  content: url(#) "";
-  position: absolute;
-  width: 100%;
-  height: 5px;
-  background: #303032;
-  top: 0;
-  left: 0;
-  z-index: 1;
-  cursor: pointer;
-}
-.chance-item.showBuyButton:after {
-  content: "КУПИТЬ";
-  text-align: center;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 22px;
-  letter-spacing: 0.13em;
-  text-transform: uppercase;
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  bottom: -45px;
-  left: 0;
-  height: 58px;
-  width: 100%;
-  background: #303032;
-  cursor: pointer;
-}
 .swiper.last_chance-swiper {
   overflow: visible;
 }
-/* .chance-items:hover > div:first-child:not(:hover)::before,
-.chance-items:hover > div:first-child:not(:hover)::after {
-  opacity: 0;
-} */
-/* .chance-item:hover::before { */
 .chance-item.showBuyButton::before {
   content: "";
   position: absolute;
@@ -685,7 +649,7 @@ ul {
   align-items: center;
   justify-content: center;
   position: absolute;
-  bottom: -45px;
+  bottom: -25px;
   left: 0;
   height: 58px;
   width: 100%;
@@ -814,6 +778,45 @@ ul {
 }
 /* hide lost-chance swiper pagination symbol */
 .last_chance-swiper:not(.swiper-initialized) .swiper-pagination.last__slider-pagination {
+  display: none;
+}
+
+.product-delivery::before {
+  content: "";
+  position: absolute;
+  height: 460px;
+  width: 100vw;
+  top: 0;
+  right: 50%;
+  background-color: #fceae8;
+  opacity: 0.6;
+  z-index: -1;
+}
+.product-warranty::before {
+  content: "";
+  position: absolute;
+  height: 160px;
+  width: 100vw;
+  top: 0;
+  right: 50%;
+  background-color: #fceae8;
+  opacity: 0.6;
+  z-index: -1;
+}
+
+.product-delivery,
+.product-warranty {
+  line-height: 1.4;
+  margin-bottom: 80px;
+  position: relative;
+}
+.product-delivery__company-item {
+  margin-left: 15px;
+}
+.delivery-gaps li {
+  margin-left: 45px;
+}
+.hide {
   display: none;
 }
 
@@ -1359,6 +1362,13 @@ ul {
     padding-top: 3px;
     padding-left: 0px;
   }
+  .unselectable {
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+
 }
 @media (max-width: 374px) {
   .last_chance-swiper {

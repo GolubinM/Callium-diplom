@@ -6,6 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Callium - продажа дизайнерской мебели">
   <title>Style furnitures "Callium"</title>
+  <link rel="preload" href="fonts/open-sans.woff2" as="font" crossorigin="anonymous">
+  <link rel="preload" href="fonts/playfair-display.woff2" as="font" crossorigin="anonymous">
+  <link rel="preload" href="fonts/playfair-display-bold.woff2" as="font" crossorigin="anonymous">
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/swiper-bundle.min.css">
   <link rel="stylesheet" href="css/style.css">
@@ -154,7 +157,7 @@
       </a>
     </section>
 
-    <section class="reviews swiper swiper-review container">
+    <section class="reviews swiper swiper-review container unselectable">
       <div class="reviews-wrap swiper-wrapper">
         <!-- json's reviews insert -->
       </div>
@@ -190,6 +193,75 @@
     </section>
 
     <footer class="footer container">
+      <div class="product-delivery hide" id="delivery">
+        <p class="last__chance_header">ДОСТАВКА</p>
+        <hr class="news__header__line">
+        <div class="product-delivery__item">
+          <h4>Доставка по Москве и области</h4>
+          <div class="product-delivery__info">
+            Доставка по Москве (в пределах МКАД) - 690 рублей.
+            Стоимость доставки по Московской области:690 рублей + 35 рублей за каждый километр от МКАД.
+          </div>
+        </div>
+        <div class="product-delivery__item">
+          <h4>Доставка по Санкт-Петербургу и Ленинградской области</h4>
+          <div class="product-delivery__info">
+            Доставка по Санкт-Петербургу (в пределах КАД) - 690 рублей.
+            Стоимость доставки по Ленинградской области:690 рублей + 40 рублей за каждый километр от зоны КАД
+          </div>
+        </div>
+        <div class="product-delivery__item">
+          <h4>Доставка по России</h4>
+          <div class="product-delivery__info">
+            <ol class="delivery-steps__list">
+              <li class="delivery-steps__item">Выберите транспортную компанию:
+                <div class="product-delivery__company">
+                  <div class="product-delivery__company-item">
+                    Деловые Линии, <a href="https://www.dellin.ru/" target="_blank" rel="noopener">www.dellin.ru</a>
+                  </div>
+                  <div class="product-delivery__company-item">
+                    ПЭК, <a href="https://pecom.ru/" target="_blank" rel="noopener">pecom.ru</a>
+                  </div>
+                </div>
+              </li>
+              <li class="delivery-steps__item">Согласуйте с нашим менеджером заказ, сроки и условия
+                доставки по бесплатному телефону по России 8-800-555-55-55</li>
+              <li class="delivery-steps__item">Оплатите заказ. Для физичиских и юридических лиц доступна оплата картой
+                на сайте или по счету.</li>
+            </ol>
+            <div class="product-delivery__info-item">
+              <p>Заказы доставляются транспортной компанией при условии 100% предоплаты.</p>
+              <p>При выборе доставки с помощью транспортной компании от физических лиц необходим серия и номер
+                паспорта , для юридических лиц - реквизиты организации и подробные данные контактного лица.</p>
+            </div>
+          </div>
+        </div>
+        <div class="delivery-rules">
+          <p>Доставка осуществляется с понедельника по воскресенье с 10.00 до 22.00, в удобный вам интервал времени.</p>
+          <ul class="delivery-gaps">
+            <li>с 10 до 13</li>
+            <li>с 13 до 16</li>
+            <li>с 16 до 22</li>
+          </ul>
+          <p>При отказе от заказа доставка оплачивается в обязательном порядке.</p>
+          <p>Сборка, расстановка в помещении оплачивается отдельно при заказе товара.</p>
+        </div>
+        <div class="product-delivery__item">
+          <div class="delivery-pickup">
+            <h4 class="delivery-heading">Самовывоз</h4>
+            <p>Вы можете забрать товар самостоятельно, по адресу в Москве: <br>ул. Складочная, 6 стр2, на следующий день
+              после заказа с 8:00 до 22:00 по будним дням и выходным.</p>
+          </div>
+        </div>
+      </div>
+      <div class="product-warranty hide"><a name="warranty"></a>
+        <p class="last__chance_header">ГАРАНТИИ</p>
+        <hr class="news__header__line">
+        <p>Гарантия на товар составляет 12 месяцев при использовании в домашних или бытовых условиях. При использовании
+          товара в профессиональной или коммерческой деятельности срок гарантии составляет 8 месяцев. Гарантийный срок
+          исчисляется с даты получения покупателем товара.</p>
+      </div>
+
       <div class="footer__nav">
         <a href="#"><img class="logo__footer" src="img/Subtract_iconR.svg" alt="icon_logo"></a>
         <div class="footer__addres">
@@ -203,10 +275,10 @@
           </a>
         </div>
         <div class="footer_menu">
-          <a class="service" href="#">ДОСТАВКА</a>
-          <a class="service" href="#">ОПЛАТА</a>
-          <a class="service" href="#">КОНТАКТЫ</a>
-          <a class="service" href="#">ГАРАНТИИ</a>
+          <a class="service" id="deliveryBtn" href="#/">ДОСТАВКА</a>
+          <a class="service" id="payBtn" href="#/">ОПЛАТА</a>
+          <a class="service" id="contactsBtn" href="#/">КОНТАКТЫ</a>
+          <a class="service" id="warrantyBtn" href="#/">ГАРАНТИИ</a>
         </div>
       </div>
       <div class="footer_discl">
@@ -215,6 +287,9 @@
           Все права защищены.</p>
       </div>
     </footer>
+    <section class="delivery">
+    </section>
+
   </main>
 </body>
 <script src="js/vendor/swiper-bundle.min.js"> </script>
