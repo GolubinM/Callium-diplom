@@ -91,25 +91,56 @@ observedLastChance.onmouseout = function (event) {
 };
 
 //----Скрытие/отображение разделов доставка, гарантия, оплата, контакты-----------------------------------------
-document.querySelector(`.footer_menu`).addEventListener("click", (e) => {
-  e.preventDefault;
-  let elementSelector = false;
-  let targetId = e.target.id;
-  if (targetId === "deliveryBtn") {
-    elementSelector = `.product-delivery`;
-  } else if (targetId === "warrantyBtn") {
-    elementSelector = `.product-warranty`;
-  } else if (targetId === "payBtn") {
-    // elementSelector = `.product-warranty`;
-  } else if (targetId === "contactsBtn") {
-    // elementSelector = `.product-warranty`;
+let openedSelector = false;
+let openedElement = null;
+let currentY;
+const scrollControl = function () {
+  // При скролле на 400 точек выше открытого элемента(Доставка, Гарантии, Контакты, Оплата) - элементы скрываются.
+  if (currentY - scrollY > 400) {
+    closeElement();
+    removeEventListener("scroll", scrollControl);
   }
-  elementSelector ? toggleElement(elementSelector) : false;
+};
+
+document.querySelector(`.footer_menu`).addEventListener("click", (e) => {
+  let targetId = e.target.id;
+  let toogledSelector;
+  if (targetId === "deliveryBtn") {
+    toogledSelector = `.product-delivery`;
+  } else if (targetId === "warrantyBtn") {
+    toogledSelector = `.product-warranty`;
+  } else if (targetId === "payBtn") {
+    // toogledSelector = `.product-warranty`;
+  } else if (targetId === "contactsBtn") {
+    // toogledSelector = `.product-warranty`;
+  }
+  // Вариант 1. Не один элемент не открыт -> (открыть элемент, обновить переменную высоты), повесить обработчик scroll
+  if (!openedSelector) {
+    openElement(toogledSelector);
+    addEventListener("scroll", scrollControl);
+  }
+  // Вариант 2. Открыт не тот элемент что выбран -> закрыть открытый элемент, (открыть новый, обновить переменную высоты)
+  else if (openedSelector !== toogledSelector) {
+    closeElement();
+    openElement(toogledSelector);
+  }
+  // Вариант 3. Открыт то же элемент что выбран -> (закрыть открытый элемент, обновить переменную высоты), удалить обработчик scroll
+  else if (openedSelector === toogledSelector) {
+    closeElement(toogledSelector);
+    removeEventListener("scroll", scrollControl);
+  }
 });
 
-function toggleElement(elementSelector) {
-  let toggledElement = document.querySelector(elementSelector);
-  toggledElement.classList.toggle("hide");
-  toggledElement.scrollIntoView({ block: "start", behavior: "smooth" });
+function openElement(selector) {
+  openedSelector = selector;
+  openedElement = document.querySelector(selector);
+  openedElement.classList.remove("hide");
+  openedElement.scrollIntoView({ block: "start", behavior: "smooth" });
+  currentY = scrollY;
+}
+function closeElement() {
+  openedElement.classList.add("hide");
+  openedSelector = false;
+  currentY = 0;
 }
 //------------------------------------------------------------------------
