@@ -922,6 +922,11 @@ ul {
   }
 }
 @media (max-width: 767px) {
+  .chance-item.showBuyButton::after
+  {
+    bottom: 30px;
+  }
+  
   .reviews {
     display: none;
   }
@@ -1334,10 +1339,46 @@ ul {
   .footer__nav {
     height: 208px;
   }
-  .chance-item.showBuyButton::after,
-  .chance-item.showBuyButton::before {
-    display: none;
+  /* .chance-item.showBuyButton::after, */
+  /* .chance-item.showBuyButton::before { */
+    /* display: none; */
+  /* } */
+  /* Показывать для всех карточек chance-item кнопку КУПИТЬ */
+  .chance-item::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 5px;
+    background: #303032;
+    top: 0;
+    left: 0;
+    z-index: 2;
   }
+  .chance-item::after {
+    content: "КУПИТЬ";
+    text-align: center;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: 30px;
+    left: 0;
+    height: 58px;
+    width: 100%;
+    background: #303032;
+    z-index: 2;
+  }
+  .chance-img{
+    margin-bottom: auto;
+  }
+
+
 }
 
 @media (max-width: 424px) {
