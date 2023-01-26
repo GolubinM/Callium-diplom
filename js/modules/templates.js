@@ -11,6 +11,7 @@ const templateReviews = (key, data) => {
 // Шаблон для LastChance блоков
 const templateLastChance = (key, data) => {
   return `<div class="swiper-slide box-to-buy">
+        <div class="upBuyBtn hide"></div>
         <a class="chance-item" href="#/">
         <p class="chance-item__name">${data[key]["name"]}</p>
         <div class="prices">
@@ -19,6 +20,7 @@ const templateLastChance = (key, data) => {
         </div>
         <img class="chance-img" src=${data[key]["image"]} width="204" height="300" alt="img chance">
         </a>
+        <button class="BuyBtn hide">КУПИТЬ</button>
         </div>`;
 };
 //------------------------------------------------------------------------

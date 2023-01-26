@@ -67,7 +67,15 @@ const observedLastChance = document.querySelector(".chance-items");
 const observerLastChance = new MutationObserver(function (mutations) {
   mainSlider(); // запускаем слайдеры после загргузки данных JSON
   // Добавляем к вновь созданному первому элементу класс
-  mutations[0].addedNodes[0].firstElementChild.classList.add("showBuyButton");
+  const firstCardUp = mutations[0].addedNodes[0].firstElementChild
+  const firstCardBtm = mutations[0].addedNodes[0].lastElementChild
+  // console.log(firstCardUp);
+  // console.log(firstCardBtm);
+  firstCardUp.classList.add("show");
+  firstCardBtm.classList.add("show");
+  firstCardUp.classList.remove("hide");
+  firstCardBtm.classList.remove("hide");
+  // console.log(document.querySelectorAll(".chance-item.showBuyButton"));
 });
 
 observerLastChance.observe(observedLastChance, { childList: true });
@@ -76,11 +84,14 @@ if (window.innerWidth > 767) {
   let currentCard = null;
   observedLastChance.onmouseover = function (event) {
     if (currentCard) return; // Исключает обработку при движении мыши внутри текущего элемента
-    let targetCard = event.target.closest(".chance-item"); //Выбирает карточку под указателем мыши с классом `chance-item`
+    console.log(event.target);
+    let targetCard = event.target.closest(".upBuyBtn"); //Выбирает карточку под указателем мыши с классом `chance-item`
+    console.log(targetCard);
     if (!targetCard) return; // Исключает обработку если мышь не над карточкой (targetCard не выбрана)
     currentCard = targetCard; // Определяет выбранную карточку для обработки
-    document.querySelector(".showBuyButton").classList.remove("showBuyButton"); // удаляем класс с предыдущей карточки
-    currentCard.classList.add("showBuyButton"); // определяем класс для текущей карточки
+    document.querySelector(".show").classList.remove("hide"); // удаляем класс с предыдущей карточки
+    console.log(document.querySelector(".show"));
+    currentCard.classList.add("show"); // определяем класс для текущей карточки
   };
   observedLastChance.onmouseout = function (event) {
     if (!currentCard) return; // Исключает обработку при движении мыши внутри текущего элемента
@@ -147,3 +158,20 @@ function closeElement() {
   currentY = 0;
 }
 //------------------------------------------------------------------------
+// Вставака количества позиций товаров в корзине (cart.length)
+let cart = [];
+cart = [
+  { 310003: 3 },
+  { 310003: 3 },
+  { 310003: 3 },
+  { 310003: 3 },
+];
+// console.log(cart);
+let cartCuontity = `<div class="itemsInCart">${cart.length}</div>`;
+if (cart.length) {
+  document.querySelector(".user-nav__item--cart a").insertAdjacentHTML("afterbegin", cartCuontity);
+}
+//------------------------------------------------------------------------
+// Добавление товаров в корзину (cart.length)
+// поиск кнопки купить
+// console.log(document.querySelectorAll(".chance-item.showBuyButton"));
