@@ -10,7 +10,7 @@ const templateReviews = (key, data) => {
 
 // Шаблон для LastChance блоков
 const templateLastChance = (key, data) => {
-  return `<div class="swiper-slide box-to-buy">
+  return `<div class="swiper-slide box-to-buy" label="${[key]}">
         <div class="upBuyBtn hide"></div>
         <a class="chance-item" href="#/">
         <p class="chance-item__name">${data[key]["name"]}</p>
