@@ -1,5 +1,6 @@
 import { mainSlider } from "./modules/swipers.js";
 import { templateReviews, templateLastChance } from "./modules/templates.js";
+import { buyButtonsShow, showBuyButton, hideBuyButton } from "./modules/pointCard.js";
 //------------------------------------------------------------------------
 //Закрыает бургер-меню
 let checkBurgerMenu = document.getElementById("check");
@@ -59,7 +60,7 @@ function filter(category, items) {
         });
   return selectedItems; //возвращает массив отобранных элементов(карточек товара)
 }
-//------------------------------------------------------------------------
+//-----наведение мыши на карточку last chance, отоброжение кнопки купить--------------------------------------------
 // Обработка наведения мыши для last-chance cards
 // по умолчанию кнопка КУПИТЬ активна для первой карточки last-chance
 
@@ -67,31 +68,49 @@ const observedLastChance = document.querySelector(".chance-items");
 const observerLastChance = new MutationObserver(function (mutations) {
   mainSlider(); // запускаем слайдеры после загргузки данных JSON
   // Добавляем к вновь созданному первому элементу класс
-  const firstCardUp = mutations[0].addedNodes[0].firstElementChild
-  const firstCardBtm = mutations[0].addedNodes[0].lastElementChild
+
+  // const firstCard = mutations[0].addedNodes[0];
+  // console.log(firstCard);
+  // showBuyButton(firstCard);
+  
+  buyButtonsShow();
+
+  // const firstCardUp = mutations[0].addedNodes[0].firstElementChild
+  // const firstCardBtm = mutations[0].addedNodes[0].lastElementChild
+
   // console.log(firstCardUp);
   // console.log(firstCardBtm);
-  firstCardUp.classList.add("show");
-  firstCardBtm.classList.add("show");
-  firstCardUp.classList.remove("hide");
-  firstCardBtm.classList.remove("hide");
+  // Отобразили кнопку КУПИТЬ при загрузке первой карточки
+
+  // firstCardUp.classList.add("show");
+  // firstCardBtm.classList.add("show");
+  // firstCardUp.classList.remove("hide");
+  // firstCardBtm.classList.remove("hide");
+
   // console.log(document.querySelectorAll(".chance-item.showBuyButton"));
 });
 
 observerLastChance.observe(observedLastChance, { childList: true });
 
+// ==================УБРАТЬ!!!!!!!!!!
+function changeBuyButton() {
+  if (window.innerWidth <= 767) {
+    showBuyButtonAll();
+  } else {
+    showBuyButtonOneCard();
+  }
+}
+
 if (window.innerWidth > 767) {
   let currentCard = null;
   observedLastChance.onmouseover = function (event) {
     if (currentCard) return; // Исключает обработку при движении мыши внутри текущего элемента
-    console.log(event.target);
-    let targetCard = event.target.closest(".upBuyBtn"); //Выбирает карточку под указателем мыши с классом `chance-item`
-    console.log(targetCard);
+    let targetCard = event.target.closest(".box-to-buy"); //Выбирает карточку под указателем мыши с классом `box-to-buy`
     if (!targetCard) return; // Исключает обработку если мышь не над карточкой (targetCard не выбрана)
     currentCard = targetCard; // Определяет выбранную карточку для обработки
-    document.querySelector(".show").classList.remove("hide"); // удаляем класс с предыдущей карточки
-    console.log(document.querySelector(".show"));
-    currentCard.classList.add("show"); // определяем класс для текущей карточки
+    const oldCard = document.querySelector(".show").closest(".box-to-buy");
+    hideBuyButton(oldCard); // удаляем класс с предыдущей карточки
+    showBuyButton(currentCard); // определяем класс для текущей карточки
   };
   observedLastChance.onmouseout = function (event) {
     if (!currentCard) return; // Исключает обработку при движении мыши внутри текущего элемента
@@ -104,6 +123,7 @@ if (window.innerWidth > 767) {
     currentCard = null; //Обрабатываем событие ухода мыши с карточки
   };
 }
+
 //----Скрытие/отображение разделов доставка, гарантия, оплата, контакты-----------------------------------------
 let openedSelector = false;
 let openedElement = null;
@@ -160,12 +180,7 @@ function closeElement() {
 //------------------------------------------------------------------------
 // Вставака количества позиций товаров в корзине (cart.length)
 let cart = [];
-cart = [
-  { 310003: 3 },
-  { 310003: 3 },
-  { 310003: 3 },
-  { 310003: 3 },
-];
+cart = [{ 310003: 3 }, { 310003: 3 }, { 310003: 3 }, { 310003: 3 }];
 // console.log(cart);
 let cartCuontity = `<div class="itemsInCart">${cart.length}</div>`;
 if (cart.length) {

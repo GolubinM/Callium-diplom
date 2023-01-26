@@ -20,7 +20,7 @@ const templateLastChance = (key, data) => {
         </div>
         <img class="chance-img" src=${data[key]["image"]} width="204" height="300" alt="img chance">
         </a>
-        <button class="BuyBtn hide">КУПИТЬ</button>
+        <button class="buyBtn hide">КУПИТЬ</button>
         </div>`;
 };
 //------------------------------------------------------------------------
