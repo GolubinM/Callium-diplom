@@ -1,6 +1,7 @@
 import { mainSlider } from "./modules/swipers.js";
 import { templateReviews, templateLastChance } from "./modules/templates.js";
-import { buyButtonsShow, showBuyButton, hideBuyButton } from "./modules/pointCard.js";
+import { buyButtonsShow } from "./modules/pointCard.js";
+import { cart } from "./modules/cart.js";
 //------------------------------------------------------------------------
 //Закрыает бургер-меню
 let checkBurgerMenu = document.getElementById("check");
@@ -64,65 +65,14 @@ function filter(category, items) {
 // Обработка наведения мыши для last-chance cards
 // по умолчанию кнопка КУПИТЬ активна для первой карточки last-chance
 
-const observedLastChance = document.querySelector(".chance-items");
+const lastChanceBlock = document.querySelector(".chance-items");
 const observerLastChance = new MutationObserver(function (mutations) {
   mainSlider(); // запускаем слайдеры после загргузки данных JSON
   // Добавляем к вновь созданному первому элементу класс
-
-  // const firstCard = mutations[0].addedNodes[0];
-  // console.log(firstCard);
-  // showBuyButton(firstCard);
-  
   buyButtonsShow();
-
-  // const firstCardUp = mutations[0].addedNodes[0].firstElementChild
-  // const firstCardBtm = mutations[0].addedNodes[0].lastElementChild
-
-  // console.log(firstCardUp);
-  // console.log(firstCardBtm);
-  // Отобразили кнопку КУПИТЬ при загрузке первой карточки
-
-  // firstCardUp.classList.add("show");
-  // firstCardBtm.classList.add("show");
-  // firstCardUp.classList.remove("hide");
-  // firstCardBtm.classList.remove("hide");
-
-  // console.log(document.querySelectorAll(".chance-item.showBuyButton"));
 });
 
-observerLastChance.observe(observedLastChance, { childList: true });
-
-// ==================УБРАТЬ!!!!!!!!!!
-function changeBuyButton() {
-  if (window.innerWidth <= 767) {
-    showBuyButtonAll();
-  } else {
-    showBuyButtonOneCard();
-  }
-}
-
-if (window.innerWidth > 767) {
-  let currentCard = null;
-  observedLastChance.onmouseover = function (event) {
-    if (currentCard) return; // Исключает обработку при движении мыши внутри текущего элемента
-    let targetCard = event.target.closest(".box-to-buy"); //Выбирает карточку под указателем мыши с классом `box-to-buy`
-    if (!targetCard) return; // Исключает обработку если мышь не над карточкой (targetCard не выбрана)
-    currentCard = targetCard; // Определяет выбранную карточку для обработки
-    const oldCard = document.querySelector(".show").closest(".box-to-buy");
-    hideBuyButton(oldCard); // удаляем класс с предыдущей карточки
-    showBuyButton(currentCard); // определяем класс для текущей карточки
-  };
-  observedLastChance.onmouseout = function (event) {
-    if (!currentCard) return; // Исключает обработку при движении мыши внутри текущего элемента
-    let relatedTarget = event.relatedTarget; // Исключаем обработку дочерних элементов карточки
-    while (relatedTarget) {
-      // Исключаем обработку дочерних элементов карточки
-      if (relatedTarget == currentCard) return; // Исключаем обработку дочерних элементов карточки
-      relatedTarget = relatedTarget.parentNode; // Исключаем обработку дочерних элементов карточки
-    }
-    currentCard = null; //Обрабатываем событие ухода мыши с карточки
-  };
-}
+observerLastChance.observe(lastChanceBlock, { childList: true });
 
 //----Скрытие/отображение разделов доставка, гарантия, оплата, контакты-----------------------------------------
 let openedSelector = false;
@@ -179,14 +129,21 @@ function closeElement() {
 }
 //------------------------------------------------------------------------
 // Вставака количества позиций товаров в корзине (cart.length)
-let cart = [];
-cart = [{ 310003: 3 }, { 310003: 3 }, { 310003: 3 }, { 310003: 3 }];
-// console.log(cart);
-let cartCuontity = `<div class="itemsInCart">${cart.length}</div>`;
-if (cart.length) {
-  document.querySelector(".user-nav__item--cart a").insertAdjacentHTML("afterbegin", cartCuontity);
-}
+// function addToCart(item) {}
+// let cart1 = [];
+// cart1 = [{ 310003: 3 }, { 310003: 3 }, { 310003: 3 }, { 310003: 3 }];
+// // console.log(cart);
+// let cartCuontity = `<div class="itemsInCart">${cart1.length}</div>`;
+// if (cart1.length) {
+//   document.querySelector(".user-nav__item--cart a").insertAdjacentHTML("afterbegin", cartCuontity);
+// }
 //------------------------------------------------------------------------
 // Добавление товаров в корзину (cart.length)
-// поиск кнопки купить
-// console.log(document.querySelectorAll(".chance-item.showBuyButton"));
+lastChanceBlock.addEventListener("click", (event) => {
+  const element = event.target.parentNode;
+  const elementClassList = event.target.classList;
+  if (elementClassList.contains("buyBtn")) {
+    const elementKey = element.getAttribute("label");
+    cart.add(elementKey);
+  }
+});
